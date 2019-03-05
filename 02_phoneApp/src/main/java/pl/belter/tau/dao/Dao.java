@@ -1,7 +1,7 @@
 package pl.belter.tau.dao;
 
-import java.util.List;
-import java.util.Optional;
+import pl.belter.tau.domain.Phone;
 
 public interface Dao<T> {
+    void save(Phone o);
 }
