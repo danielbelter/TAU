@@ -10,6 +10,9 @@ import pl.belter.tau.domain.Phone;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Optional;
+
+import static org.hamcrest.CoreMatchers.is;
 
 @RunWith(JUnit4.class)
 public class PhoneInMemoryDaoTest {
@@ -39,6 +42,12 @@ public class PhoneInMemoryDaoTest {
     public void gettingAllPhonesTest(){
         Assert.assertArrayEquals(dao.phoneDB.toArray(),dao.getAll().toArray());
         Assert.assertEquals(dao.phoneDB.size(),dao.getAll().size());
+    }
+
+    @Test
+    public void getPhoneById(){
+        Optional<Phone> p = dao.get(1);
+        Assert.assertThat(p.get().getModel(), is("Sony"));
     }
 
 }
