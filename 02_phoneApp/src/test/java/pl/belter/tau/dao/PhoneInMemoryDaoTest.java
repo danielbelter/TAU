@@ -39,15 +39,35 @@ public class PhoneInMemoryDaoTest {
     }
 
     @Test
-    public void gettingAllPhonesTest(){
-        Assert.assertArrayEquals(dao.phoneDB.toArray(),dao.getAll().toArray());
-        Assert.assertEquals(dao.phoneDB.size(),dao.getAll().size());
+    public void gettingAllPhonesTest() {
+        Assert.assertArrayEquals(dao.phoneDB.toArray(), dao.getAll().toArray());
+        Assert.assertEquals(dao.phoneDB.size(), dao.getAll().size());
     }
 
     @Test
-    public void getPhoneById(){
+    public void getPhoneById() {
         Optional<Phone> p = dao.get(1);
         Assert.assertThat(p.get().getModel(), is("Sony"));
     }
 
+    @Test
+    public void checkDeleteMethod() {
+        Phone phone = dao.get(1).get();
+        Assert.assertEquals(2, dao.delete(phone).longValue());
+        Assert.assertEquals(1, dao.phoneDB.size());
+    }
+
+    @Test
+    public void checkUpdateMethod() {
+        Phone phone = dao.get(1).get();
+        phone.setModel("model1");
+        phone.setSerialNumber(50);
+        Assert.assertEquals("model1", dao.get(1).get().getModel());
+        Assert.assertEquals(50, dao.get(1).get().getSerialNumber());
+
+
+    }
 }
+
+
+

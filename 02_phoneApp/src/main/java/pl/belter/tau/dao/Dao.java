@@ -7,6 +7,11 @@ import java.util.Optional;
 
 public interface Dao<T> {
     void save(Phone o);
+
     List<T> getAll();
+
     Optional<T> get(int id);
+
+    void update(T o) throws IllegalArgumentException;
+    Long delete(T o);
 }

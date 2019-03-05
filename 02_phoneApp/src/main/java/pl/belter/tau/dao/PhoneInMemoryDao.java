@@ -20,10 +20,27 @@ public class PhoneInMemoryDao implements Dao<Phone> {
     }
 
     @Override
-    public Optional<Phone> get(int id) throws IllegalArgumentException  {
-        if(phoneDB.get(id) == null ){
+    public Optional<Phone> get(int id) throws IllegalArgumentException {
+        if (phoneDB.get(id) == null) {
             throw new IllegalArgumentException("error");
         }
         return Optional.ofNullable(phoneDB.get(id));
     }
+
+    @Override
+    public void update(Phone o) throws IllegalArgumentException {
+        if(o.getId()!=null){
+            throw new IllegalArgumentException("ID does not exist");
+        }
+        Phone p = phoneDB.get(o.getId().intValue()-1);
+        p = o;
+    }
+
+    @Override
+    public Long delete(Phone o) {
+        Long id = o.getId();
+        phoneDB.remove(o);
+        return id;
+    }
 }
+
