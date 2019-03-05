@@ -12,4 +12,9 @@ public class PhoneInMemoryDao implements Dao<Phone> {
     public void save(Phone o) {
         phoneDB.add(o);
     }
+
+    @Override
+    public List<Phone> getAll() {
+        return phoneDB;
+    }
 }

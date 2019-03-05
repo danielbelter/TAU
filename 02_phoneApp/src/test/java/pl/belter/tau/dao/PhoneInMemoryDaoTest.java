@@ -35,4 +35,10 @@ public class PhoneInMemoryDaoTest {
         Assert.assertEquals(new Long(3), p3.getId());
     }
 
+    @Test
+    public void gettingAllPhonesTest(){
+        Assert.assertArrayEquals(dao.phoneDB.toArray(),dao.getAll().toArray());
+        Assert.assertEquals(dao.phoneDB.size(),dao.getAll().size());
+    }
+
 }
