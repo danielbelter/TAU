@@ -9,7 +9,7 @@ import org.junit.runners.JUnit4;
 @RunWith(JUnit4.class)
 public class PhoneTest {
     @Test
-    public void chceckPhone() {
+    public void checkPhone() {
         Phone phone = new Phone(1L, "Nokia", 3310);
         Assert.assertNotNull(phone);
     }

@@ -7,6 +7,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/02_phoneApp/pom.xml" />
+        <option value="$PROJECT_DIR$/01_HelloTest/pom.xml" />
       </list>
     </option>
   </component>
