@@ -10,6 +10,7 @@ import pl.belter.tau.domain.Phone;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -35,7 +36,14 @@ public class PhoneInMemoryDaoTest {
     @Test
     public void savePhoneTest() {
         Phone p3 = new Phone(3L, "Motorolla", 515);
-        Assert.assertEquals(new Long(3), p3.getId());
+        Assert.assertEquals(3L, dao.save(p3).longValue());
+        Assert.assertEquals(dao.phoneDB.size(), 3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void savingExistTest() {
+        Phone p1 = new Phone(1L, "Motorolla", 515);
+        dao.save(p1);
     }
 
     @Test
@@ -46,26 +54,40 @@ public class PhoneInMemoryDaoTest {
 
     @Test
     public void getPhoneById() {
-        Optional<Phone> p = dao.get(1);
-        Assert.assertThat(p.get().getModel(), is("Sony"));
+        Phone p = new Phone(3L, "CCC", 456);
+        dao.save(p);
+        Assert.assertEquals(p, dao.get(3L).get());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void checkGettingTest() {
+        dao.get(5L);
     }
 
     @Test
     public void checkDeleteMethod() {
-        Phone phone = dao.get(1).get();
-        Assert.assertEquals(2, dao.delete(phone).longValue());
-        Assert.assertEquals(1, dao.phoneDB.size());
+        Phone phone = dao.get(1L).get();
+        Assert.assertEquals(1L, dao.delete(phone).longValue());
+        Assert.assertEquals(1L, dao.phoneDB.size());
     }
 
     @Test
     public void checkUpdateMethod() {
-        Phone phone = dao.get(1).get();
+        Phone phone = new Phone();
+        phone.setId(1L);
         phone.setModel("model1");
         phone.setSerialNumber(50);
-        Assert.assertEquals("model1", dao.get(1).get().getModel());
-        Assert.assertEquals(50, dao.get(1).get().getSerialNumber());
+        dao.update(phone);
+        Assert.assertEquals("model1", dao.get(1L).get().getModel());
+        Assert.assertEquals(50, dao.get(1L).get().getSerialNumber());
 
 
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void checkUpdateExistMethodTest() {
+        Phone p = new Phone(3L, "CCC", 456);
+        dao.update(p);
     }
 }
 

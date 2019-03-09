@@ -10,8 +10,12 @@ public class PhoneInMemoryDao implements Dao<Phone> {
     public List<Phone> phoneDB = new ArrayList<>();
 
     @Override
-    public void save(Phone o) {
+    public Long save(Phone o) throws IllegalArgumentException {
+        if (phoneDB.stream().anyMatch(phone -> phone.getId().equals(o.getId()))) {
+            throw new IllegalArgumentException("Phone exist in db");
+        }
         phoneDB.add(o);
+        return o.getId();
     }
 
     @Override
@@ -20,20 +24,22 @@ public class PhoneInMemoryDao implements Dao<Phone> {
     }
 
     @Override
-    public Optional<Phone> get(int id) throws IllegalArgumentException {
-        if (phoneDB.get(id) == null) {
+    public Optional<Phone> get(Long id) throws IllegalArgumentException {
+        if (!phoneDB.stream().anyMatch(phone -> phone.getId().equals(id))) {
             throw new IllegalArgumentException("error");
         }
-        return Optional.ofNullable(phoneDB.get(id));
+        return phoneDB.stream().filter(phone -> phone.getId().equals(id)).findFirst();
     }
 
     @Override
-    public void update(Phone o) throws IllegalArgumentException {
-        if(o.getId()!=null){
-            throw new IllegalArgumentException("ID does not exist");
+    public Long update(Phone o) throws IndexOutOfBoundsException {
+        if (phoneDB.get(o.getId().intValue()) == null) {
+            throw new IllegalArgumentException("Phone does not exist");
         }
-        Phone p = phoneDB.get(o.getId().intValue()-1);
-        p = o;
+        Phone p = phoneDB.get(o.getId().intValue() - 1);
+        p.setSerialNumber(o.getSerialNumber());
+        p.setModel(o.getModel());
+        return o.getId();
     }
 
     @Override

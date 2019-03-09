@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Dao<T> {
-    void save(Phone o);
+    Long save(Phone o) throws IllegalArgumentException;
 
     List<T> getAll();
 
-    Optional<T> get(int id);
+    Optional<T> get(Long id) throws IllegalArgumentException;
 
-    void update(T o) throws IllegalArgumentException;
+    Long update(T o) throws IndexOutOfBoundsException;
+
     Long delete(T o);
 }
