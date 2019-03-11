@@ -37,8 +37,13 @@ public class PhoneInMemoryDao implements Dao<Phone> {
             throw new IllegalArgumentException("Phone does not exist");
         }
         Phone p = phoneDB.get(o.getId().intValue() - 1);
+        if (o.getModel() == null) {
+            o.setModel(o.getModel());
+
+        } else {
+            p.setModel(o.getModel());
+        }
         p.setSerialNumber(o.getSerialNumber());
-        p.setModel(o.getModel());
         return o.getId();
     }
 
