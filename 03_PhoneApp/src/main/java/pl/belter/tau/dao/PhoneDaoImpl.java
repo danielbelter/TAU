@@ -10,6 +10,8 @@ public class PhoneDaoImpl implements Dao {
     private Connection connection;
     private PreparedStatement addMovieStmt;
     private PreparedStatement getAllMoviesStmt;
+    private PreparedStatement getPhoneStmt;
+
 
     public PhoneDaoImpl() throws SQLException {
     }
@@ -86,6 +88,26 @@ public class PhoneDaoImpl implements Dao {
     }
 
     @Override
+    public Phone getPhone(long id) throws SQLException {
+        try {
+            getPhoneStmt.setLong(1, id);
+            ResultSet rs = getPhoneStmt.executeQuery();
+
+            if (rs.next()) {
+                Phone p = new Phone();
+                p.setId(rs.getLong("id"));
+                p.setModel(rs.getString("model"));
+                p.setSerialNumber(rs.getInt("serialnumber"));
+                return p;
+            }
+
+        } catch (SQLException e) {
+            throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+        }
+        throw new SQLException("Phone with id " + id + " does not exist");
+    }
+
+    @Override
     public Connection getConnection() {
         return connection;
     }
@@ -98,5 +120,6 @@ public class PhoneDaoImpl implements Dao {
                 Statement.RETURN_GENERATED_KEYS);
 
         getAllMoviesStmt = connection.prepareStatement("SELECT id, model, serialnumber FROM Phone ORDER BY id");
+        getPhoneStmt = connection.prepareStatement("SELECT id, model, serialnumber FROM Phone WHERE id = ?");
     }
 }

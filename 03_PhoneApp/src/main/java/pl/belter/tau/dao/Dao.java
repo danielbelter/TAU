@@ -15,4 +15,6 @@ public interface Dao {
     int addPhone(Phone phone);
 
     List<Phone> getAllPhones();
+
+    Phone getPhone(long id) throws SQLException;
 }

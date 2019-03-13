@@ -59,7 +59,7 @@ public class PhoneDaoImplTest {
         }
         phoneManager = new PhoneDaoImpl(connection);
     }
-/*
+
     @After
     public void cleanup() throws SQLException {
         Connection connection = DriverManager.getConnection(url);
@@ -69,7 +69,7 @@ public class PhoneDaoImplTest {
             System.out.println("Probably the database was not yet initialized");
         }
     }
-    */
+
 
     @Test
     public void checkAdding() throws Exception {
@@ -83,6 +83,19 @@ public class PhoneDaoImplTest {
     @Test
     public void checkGettingAll() {
         Assert.assertThat(phoneManager.getAllPhones(), equalTo(expectedDbState));
+    }
+
+    @Test
+    public void checkGettingById() throws Exception {
+        Phone phone = expectedDbState.get(5);
+        Assert.assertEquals(phone, phoneManager.getPhone(phone.getId()));
+    }
+
+    @Test(expected = Exception.class)
+    public void checkGettingByIdException() throws Exception {
+        Phone phone = expectedDbState.get(12);
+        Assert.assertEquals(phone, phoneManager.getPhone(phone.getId()));
+
     }
 
 }
