@@ -39,19 +39,13 @@ public class Phone {
         this.serialNumber = serialNumber;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Phone phone = (Phone) o;
-        return serialNumber == phone.serialNumber &&
-                Objects.equals(id, phone.id) &&
-                Objects.equals(model, phone.model);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, model, serialNumber);
+        return Objects.equals(id, phone.id) &&
+                Objects.equals(model, phone.model) &&
+                Objects.equals(serialNumber, phone.serialNumber);
     }
 
     @Override

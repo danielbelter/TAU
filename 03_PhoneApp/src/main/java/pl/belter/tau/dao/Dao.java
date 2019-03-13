@@ -13,4 +13,6 @@ public interface Dao {
     void setConnection(Connection connection) throws SQLException;
 
     int addPhone(Phone phone);
+
+    List<Phone> getAllPhones();
 }
