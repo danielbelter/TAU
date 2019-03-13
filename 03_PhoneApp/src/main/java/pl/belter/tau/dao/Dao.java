@@ -19,4 +19,6 @@ public interface Dao {
     Phone getPhone(long id) throws SQLException;
 
     int updatePhone(Phone phone) throws SQLException;
+
+    int delete(Phone phone);
 }

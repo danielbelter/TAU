@@ -114,5 +114,21 @@ public class PhoneDaoImplTest {
         Assert.assertEquals(1, phoneManager.updatePhone(p));
     }
 
+    @Test(expected = SQLException.class)
+    public void checkDeletingFail() throws SQLException {
+        Phone p = expectedDbState.get(3);
+        expectedDbState.remove(p);
+        Assert.assertEquals(1, phoneManager.delete(p));
+        Assert.assertThat(phoneManager.getAllPhones(), equalTo(expectedDbState));
+        Assert.assertNull(phoneManager.getPhone(p.getId()));
+    }
+
+    @Test()
+    public void checkDeleting() {
+        Phone p = expectedDbState.get(1);
+        expectedDbState.remove(p);
+        Assert.assertEquals(1, phoneManager.delete(p));
+        Assert.assertThat(phoneManager.getAllPhones(), equalTo(expectedDbState));
+    }
 
 }

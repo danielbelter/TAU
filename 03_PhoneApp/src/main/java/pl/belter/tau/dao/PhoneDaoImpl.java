@@ -12,6 +12,7 @@ public class PhoneDaoImpl implements Dao {
     private PreparedStatement getAllMoviesStmt;
     private PreparedStatement getPhoneStmt;
     private PreparedStatement updatePhoneStmt;
+    private PreparedStatement deletePhoneStmt;
 
     public PhoneDaoImpl() throws SQLException {
     }
@@ -128,6 +129,16 @@ public class PhoneDaoImpl implements Dao {
     }
 
     @Override
+    public int delete(Phone phone) {
+        try {
+            deletePhoneStmt.setLong(1, phone.getId());
+            return deletePhoneStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+        }
+    }
+
+    @Override
     public Connection getConnection() {
         return connection;
     }
@@ -142,5 +153,7 @@ public class PhoneDaoImpl implements Dao {
         getAllMoviesStmt = connection.prepareStatement("SELECT id, model, serialnumber FROM Phone ORDER BY id");
         getPhoneStmt = connection.prepareStatement("SELECT id, model, serialnumber FROM Phone WHERE id = ?");
         updatePhoneStmt = connection.prepareStatement("UPDATE Phone SET model=?,serialnumber=? WHERE id = ?");
+        deletePhoneStmt = connection.prepareStatement("DELETE FROM Phone where id = ?");
+
     }
 }
