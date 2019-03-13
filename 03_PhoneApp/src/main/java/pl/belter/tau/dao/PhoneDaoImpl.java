@@ -11,7 +11,7 @@ public class PhoneDaoImpl implements Dao {
     private PreparedStatement addMovieStmt;
     private PreparedStatement getAllMoviesStmt;
     private PreparedStatement getPhoneStmt;
-
+    private PreparedStatement updatePhoneStmt;
 
     public PhoneDaoImpl() throws SQLException {
     }
@@ -108,6 +108,26 @@ public class PhoneDaoImpl implements Dao {
     }
 
     @Override
+    public int updatePhone(Phone phone) throws SQLException {
+        int count = 0;
+        try {
+            updatePhoneStmt.setString(1, phone.getModel());
+            updatePhoneStmt.setInt(2, phone.getSerialNumber());
+            if (phone.getId() != null) {
+                updatePhoneStmt.setLong(3, phone.getId());
+            } else {
+                updatePhoneStmt.setLong(3, -1);
+            }
+            count = updatePhoneStmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+        }
+        if (count <= 0)
+            throw new SQLException("Phone not found for update");
+        return count;
+    }
+
+    @Override
     public Connection getConnection() {
         return connection;
     }
@@ -121,5 +141,6 @@ public class PhoneDaoImpl implements Dao {
 
         getAllMoviesStmt = connection.prepareStatement("SELECT id, model, serialnumber FROM Phone ORDER BY id");
         getPhoneStmt = connection.prepareStatement("SELECT id, model, serialnumber FROM Phone WHERE id = ?");
+        updatePhoneStmt = connection.prepareStatement("UPDATE Phone SET model=?,serialnumber=? WHERE id = ?");
     }
 }

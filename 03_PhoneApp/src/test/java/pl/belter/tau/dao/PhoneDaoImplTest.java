@@ -80,6 +80,7 @@ public class PhoneDaoImplTest {
 
 
     }
+
     @Test
     public void checkGettingAll() {
         Assert.assertThat(phoneManager.getAllPhones(), equalTo(expectedDbState));
@@ -97,5 +98,21 @@ public class PhoneDaoImplTest {
         Assert.assertEquals(phone, phoneManager.getPhone(phone.getId()));
 
     }
+
+    @Test()
+    public void checkUpdatingSuccess() throws SQLException {
+        Phone p = expectedDbState.get(3);
+        p.setModel("Motrorolla");
+        expectedDbState.set(3, p);
+        Assert.assertEquals(1, phoneManager.updatePhone(p));
+        Assert.assertThat(phoneManager.getAllPhones(), equalTo(expectedDbState));
+    }
+
+    @Test(expected = SQLException.class)
+    public void checkUpdatingFailure() throws SQLException {
+        Phone p = new Phone("Motrorolla", 123);
+        Assert.assertEquals(1, phoneManager.updatePhone(p));
+    }
+
 
 }
