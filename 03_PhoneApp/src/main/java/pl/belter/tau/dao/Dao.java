@@ -20,5 +20,5 @@ public interface Dao {
 
     int updatePhone(Phone phone) throws SQLException;
 
-    int delete(Phone phone);
+    int delete(Phone phone) throws SQLException;
 }

@@ -128,14 +128,25 @@ public class PhoneDaoImpl implements Dao {
         return count;
     }
 
-    @Override
-    public int delete(Phone phone) {
-        try {
-            deletePhoneStmt.setLong(1, phone.getId());
-            return deletePhoneStmt.executeUpdate();
-        } catch (SQLException e) {
-            throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+    /*
+        @Override
+        public int delete(Phone phone){
+            try {
+                deletePhoneStmt.setLong(1, phone.getId());
+                return deletePhoneStmt.executeUpdate();
+            } catch (SQLException e) {
+                throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+
+            }
         }
+        */
+    @Override
+    public int delete(Phone phone) throws SQLException {
+        deletePhoneStmt.setLong(1, phone.getId());
+        int count=deletePhoneStmt.executeUpdate();
+        if (count <= 0)
+            throw new SQLException("Phone not found for update");
+        return count;
     }
 
     @Override
