@@ -9,5 +9,7 @@ import java.util.List;
 public interface PhoneDao{
     public Connection getConnection();
     public void setConnection(Connection connection) throws SQLException;
-    public List<Phone> getAllPersons();
+    public List<Phone> getAllPhones();
+    public int addPhone(Phone phone) throws SQLException;
+    int getPhoneById(Long id);
 }

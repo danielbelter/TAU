@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42218e7c-b25c-4f90-814b-cbd5d91743de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/belter/tau/dao/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/belter/tau/dao/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pl/belter/tau/dao/PhoneDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pl/belter/tau/dao/PhoneDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pl/belter/tau/dao/PhoneDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pl/belter/tau/dao/PhoneDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04_phoneApp/src/main/java/pl/belter/phone/app/dao/PhoneDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04_phoneApp/src/main/java/pl/belter/phone/app/dao/PhoneDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../04_phoneApp/src/main/java/pl/belter/phone/app/dao/PhoneDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../04_phoneApp/src/main/java/pl/belter/phone/app/dao/PhoneDaoImpl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/pl/belter/tau/dao/PhoneDaoImplTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+            <state relative-caret-position="249">
+              <caret line="119" column="23" lean-forward="true" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -50,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pl/belter/tau/dao/PhoneDaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
@@ -215,7 +214,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552986066219" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552986570279" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../04_phoneApp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -295,14 +294,11 @@
       <updated>1552931141988</updated>
       <workItem from="1552931145307" duration="344000" />
       <workItem from="1552931569409" duration="712000" />
-      <workItem from="1552979347472" duration="5525000" />
+      <workItem from="1552979347472" duration="6109000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="PhoneDaoImplTest - 2019.03.19 at 09h 48m 24s.xml">
-      <configuration name="PhoneDaoImplTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="PhoneDaoImplTest - 2019.03.19 at 09h 49m 21s.xml">
       <configuration name="PhoneDaoImplTest" configurationId="JUnit" />
     </history-entry>
@@ -330,15 +326,18 @@
     <history-entry file="PhoneDaoImplTest - 2019.03.19 at 09h 57m 01s.xml">
       <configuration name="PhoneDaoImplTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="PhoneDaoImplTest - 2019.03.19 at 10h 09m 34s.xml">
+      <configuration name="PhoneDaoImplTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6581000" />
+    <option name="totallyTimeSpent" value="7165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="27" width="1321" height="741" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27372548" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27372548" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -347,7 +346,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3553719" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3553719" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -400,13 +399,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/pl/belter/tau/dao/PhoneDaoImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/belter/tau/dao/PhoneDaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -415,6 +407,13 @@
             <element signature="imports" expanded="true" />
             <element signature="e#4996#4997#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/pl/belter/tau/dao/PhoneDaoImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="119" column="23" lean-forward="true" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
         </state>
       </provider>
     </entry>

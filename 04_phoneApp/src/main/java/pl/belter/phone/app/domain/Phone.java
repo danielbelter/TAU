@@ -10,7 +10,8 @@ public class Phone {
     public Phone() {
     }
 
-    public Phone(String model, int serialNumber) {
+    public Phone(Long id, String model, Integer serialNumber) {
+        this.id = id;
         this.model = model;
         this.serialNumber = serialNumber;
     }
@@ -31,14 +32,15 @@ public class Phone {
         this.model = model;
     }
 
-    public int getSerialNumber() {
+    public Integer getSerialNumber() {
         return serialNumber;
     }
 
-    public void setSerialNumber(int serialNumber) {
+    public void setSerialNumber(Integer serialNumber) {
         this.serialNumber = serialNumber;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -49,11 +51,7 @@ public class Phone {
     }
 
     @Override
-    public String toString() {
-        return "Phone{" +
-                "id=" + id +
-                ", model='" + model + '\'' +
-                ", serialNumber=" + serialNumber +
-                '}';
+    public int hashCode() {
+        return Objects.hash(id, model, serialNumber);
     }
 }
