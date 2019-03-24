@@ -54,4 +54,13 @@ public class Phone {
     public int hashCode() {
         return Objects.hash(id, model, serialNumber);
     }
+
+    @Override
+    public String toString() {
+        return "Phone{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", serialNumber=" + serialNumber +
+                '}';
+    }
 }
