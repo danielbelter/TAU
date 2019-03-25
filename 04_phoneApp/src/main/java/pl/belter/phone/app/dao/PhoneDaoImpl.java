@@ -60,6 +60,9 @@ public class PhoneDaoImpl implements PhoneDao {
         preparedStatementInsert.setString(1, phone.getModel());
         preparedStatementInsert.setInt(2, phone.getSerialNumber());
         int r = preparedStatementInsert.executeUpdate();
+        if (r <= 0) {
+            throw new SQLException();
+        }
         return r;
     }
 
@@ -106,13 +109,12 @@ public class PhoneDaoImpl implements PhoneDao {
 
     @Override
     public int deletePhone(Phone phone) throws SQLException {
-        try {
-            preparedStatementDelete.setLong(1, phone.getId());
-            int r = preparedStatementDelete.executeUpdate();
-            return r;
-        } catch (SQLException e) {
-            throw new IllegalStateException(e.getMessage() + "\n" + e.getStackTrace().toString());
+        preparedStatementDelete.setLong(1, phone.getId());
+        int r = preparedStatementDelete.executeUpdate();
+        if (r <= 0) {
+            throw new SQLException();
         }
+        return r;
     }
 }
 

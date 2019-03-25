@@ -158,6 +158,27 @@ public class PhoneDaoTest {
         inorder.verify(insertStatementMock).executeUpdate();
     }
 
+    @Test(expected = SQLException.class)
+    public void checkAddingInOrderException() throws Exception {
+        // przygotujmy mocki
+        // tym razem weryfikujemy takze kolejnosc wykonania
+
+        InOrder inorder = inOrder(insertStatementMock);
+        when(insertStatementMock.executeUpdate()).thenReturn(0);
+
+        // nasza testowana metoda
+
+        PhoneDaoImpl dao = new PhoneDaoImpl();
+        dao.setConnection(connection);
+        Phone phone = new Phone();
+        phone.setModel("Nokia");
+        phone.setSerialNumber(1980);
+        dao.addPhone(phone);
+
+        // sprawdzamy wykonanie mocka
+        inorder.verify(insertStatementMock).executeUpdate();
+    }
+
     @Test
     public void checkGetPhoneById() throws SQLException {
         AbstractResultSet mockedResultSet = mock(AbstractResultSet.class);
@@ -224,6 +245,20 @@ public class PhoneDaoTest {
         inOrder.verify(deleteStatementMock, times(1)).setLong(1, 5);
         inOrder.verify(deleteStatementMock).executeUpdate();
     }
+
+    @Test(expected = SQLException.class)
+    public void checkDeleteException() throws SQLException {
+        InOrder inOrder = inOrder(deleteStatementMock);
+        when(deleteStatementMock.executeUpdate()).thenReturn(0);
+
+        PhoneDaoImpl dao = new PhoneDaoImpl();
+        dao.setConnection(connection);
+        Phone phone = initialDatabaseState.get(5);
+        dao.deletePhone(phone);
+
+        inOrder.verify(deleteStatementMock).executeUpdate();
+    }
+
 
     @Test(expected = SQLException.class)
     public void checkExceptionGettingById() throws SQLException {
