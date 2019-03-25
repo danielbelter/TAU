@@ -225,5 +225,17 @@ public class PhoneDaoTest {
         inOrder.verify(deleteStatementMock).executeUpdate();
     }
 
+    @Test(expected = SQLException.class)
+    public void checkExceptionGettingById() throws SQLException {
+        AbstractResultSet mockedResultSet = mock(AbstractResultSet.class);
+        when(mockedResultSet.next()).thenReturn(false);
+        when(preparedStatementGetById.executeQuery()).thenReturn(mockedResultSet);
+
+
+        PhoneDaoImpl dao = new PhoneDaoImpl();
+        dao.setConnection(connection);
+        dao.getPhoneById(3L);
+    }
+
 
 }
