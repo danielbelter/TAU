@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          crossorigin="anonymous">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+</head>
+<div th:replace="navi/navbar2"></div>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 offset-xl-2">
+            <ul class="list-unstyled mt-5">
+                <h2>Zamówienia w trakcie realizacji:</h2>
+                <li class="my-2 border rounded p-1" th:each="o : ${order}">
+                    <h4>Dane klienta:
+                        <span th:text="${o.customer}"></span>
+                    </h4>
+                    <h4>Numer zamówienia:
+                        <span th:text="${o.id}"></span>
+                    </h4>
+                    <h4>Priorytet:
+                        <span th:text="${o.priority}"></span>
+                    </h4>
+                    <h4>Dania:
+                        <span th:text="${o.getMeals()}"></span>
+                    </h4>
+                    <h4>Dania:
+                        <span th:text="${o.orderStatus}"></span>
+                    </h4>
+                    <h4>Data realizacji:
+                        <span th:text="${#temporals.format(o.realizationDate, 'dd-MM-yyyy HH:mm')}"></span>
+                    </h4>
+                    <form th:action="@{/manager/orders/statusdone}" method="post" style="display: inline">
+                        <input name="id" th:value="${o.id}" readonly="readonly" hidden="hidden"/>
+                        <button type="submit" class="btn btn-danger">ZREALIZOWANE</button>
+                    </form>
+                    <form th:action="@{/manager/orders/delete}" method="post" style="display: inline">
+                        <input name="id" th:value="${o.id}" readonly="readonly" hidden="hidden"/>
+                        <button type="submit" class="btn btn-danger">USUŃ</button>
+                    </form>
+                    <form th:action="@{/manager/orders/cancel}" method="post" style="display: inline">
+                        <input name="id" th:value="${o.id}" readonly="readonly" hidden="hidden"/>
+                        <button type="submit" class="btn btn-danger">ANULUJ</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div th:replace="navi/footer"></div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+</body>
+</html>

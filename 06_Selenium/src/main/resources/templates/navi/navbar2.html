@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top" xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.w3.org/1999/xhtml">
+    <a class="navbar-brand" href="/">
+        <span style="font-size: 20px;">
+        <i class="fas fa-utensils"></i>
+        </span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Strona główna<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manager">Edytuj menu<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manager/add">Dodaj danie<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/manager/category/add">Dodaj kategorie<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/manager/orders" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Zamówienia
+                </a>
+                <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/manager/orders">Obecne<span class="sr-only">(current)</span></a>
+                    <a class="dropdown-item" href="/manager/orders/done">Zrealizowane<span class="sr-only">(current)</span></a>
+                </div>
+
+            </li>
+        </ul>
+            <ul class="navbar-nav">
+                <li sec:authorize="isAuthenticated()" class="nav-item mr-3" th:style="${'color: red;'}"  sec:authentication="principal.username"></li>
+                <li sec:authorize="isAuthenticated()" class="nav-item mr-3">
+                    <form class="form-inline my-1 my-lg-1" method="post" th:action="@{/app-logout}">
+                        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Wyloguj się</button>
+                    </form>
+                </li>
+                <form  sec:authorize="!isAuthenticated()" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Wpisz frazę" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
+                </form>
+            </ul>
+    </div>
+</nav>
