@@ -1,6 +1,7 @@
 package com.app.restaurantgit.selenium;
 
 import com.app.restaurantgit.LoginPage;
+import com.app.restaurantgit.RegisterPage;
 import com.app.restaurantgit.StartPage;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.junit.AfterClass;
@@ -16,14 +17,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 public class SeleniumTest {
     private static WebDriver driver;
-    WebElement element;
     private StartPage startPage;
     private LoginPage loginPage;
+    private RegisterPage registerPage;
 
     @BeforeClass
     public static void driverSetup() {
@@ -33,13 +33,14 @@ public class SeleniumTest {
         driver = new ChromeDriver();
         driver.manage().timeouts()
                 .implicitlyWait(1, TimeUnit.MICROSECONDS);
-        driver.manage().window().setSize(new Dimension(300, 700));
+        driver.manage().window().setSize(new Dimension(400, 600));
     }
 
     @Before
     public void before() {
         startPage = new StartPage(driver);
         loginPage = new LoginPage(driver);
+        registerPage = new RegisterPage();
 
     }
 
@@ -74,6 +75,19 @@ public class SeleniumTest {
         loginPage.open();
         loginPage.login();
         assertFalse(loginPage.isLoginSuccessful());
+    }
+
+    @Test
+    public void loginSuccessfull() {
+        loginPage.open();
+        loginPage.loginSuccess();
+        assertEquals("http://automationpractice.com/index.php?controller=my-account", loginPage.loginSuccessfull());
+    }
+
+    @Test
+    public void registerUser() throws IOException {
+
+        assertEquals(true, registerPage.registerpage());
     }
 
     @AfterClass

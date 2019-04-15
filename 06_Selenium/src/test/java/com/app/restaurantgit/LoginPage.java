@@ -18,6 +18,7 @@ public class LoginPage {
     @FindBy(xpath = "//*[@id=\"SubmitLogin\"]")
     WebElement loginButton;
 
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -28,6 +29,11 @@ public class LoginPage {
     }
 
     public void login() {
+        loginButton.click();
+    }
+    public void loginSuccess() {
+        loginInput.sendKeys("daniel8b@wp.pl");
+        passwordInput.sendKeys("wYUkc8ERUw3tUF9");
         loginButton.click();
     }
     public WebElement getLoginButton() {
@@ -44,5 +50,9 @@ public class LoginPage {
 
     public boolean isLoginSuccessful() {
         return driver.findElement(By.xpath("//*[@id=\"center_column\"]/div[1]/ol/li")) == null;
+    }
+
+    public String loginSuccessfull(){
+        return driver.getCurrentUrl();
     }
 }
